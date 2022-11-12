@@ -18,15 +18,15 @@ public class GestorBibliotecaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
-		response.setContentType("text/html;charset=UTF-8");
+		
+		BaseDatos bd = new BaseDatos();
 
-		if (usuario != null && password != null) {
-			if (usuario.equals("pepe") && password.equals("pepe")) {
-				boolean iniciado = yaIniciado;
-				response.sendRedirect("bienvenida.jsp?usuario=" + usuario + "&iniciado=" + iniciado + "&method=GET");
-			} else {
-				response.sendRedirect("error.jsp?usuario=" + usuario);
-			}
+		if (bd.compruebaUsuario(usuario, password)) {
+			boolean iniciado = yaIniciado;
+			if (!yaIniciado) yaIniciado = true;
+			response.sendRedirect("bienvenida.jsp?usuario=" + usuario + "&iniciado=" + iniciado + "&method=GET");
+		} else {
+			response.sendRedirect("error.jsp?usuario=" + usuario);
 		}
 	}
 
@@ -36,16 +36,15 @@ public class GestorBibliotecaServlet extends HttpServlet {
 
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
-		response.setContentType("text/html;charset=UTF-8");
+		
+		BaseDatos bd = new BaseDatos();
 
-		if (usuario != null && password != null) {
-			if (usuario.equals("pepe") && password.equals("pepe")) {
-				boolean iniciado = yaIniciado;
-				response.sendRedirect("bienvenida.jsp?usuario=" + usuario + "&iniciado=" + iniciado + "&method=POST");
-
-			} else {
-				response.sendRedirect("error.jsp?usuario=" + usuario);
-			}
+		if (bd.compruebaUsuario(usuario, password)) {
+			boolean iniciado = yaIniciado;
+			if (!yaIniciado) yaIniciado = true;
+			response.sendRedirect("bienvenida.jsp?usuario=" + usuario + "&iniciado=" + iniciado + "&method=POST");
+		} else {
+			response.sendRedirect("error.jsp?usuario=" + usuario);
 		}
 	}
 }

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class BaseDatos {
 	
@@ -40,6 +41,28 @@ public class BaseDatos {
 		}
 		
 		return check;
+	}
+	
+	public ArrayList<Libro> consultaLibros(String filtro) {
+		ArrayList<Libro> lista = new ArrayList<Libro>();
+		
+try {
+			
+			Statement s = conexion.createStatement();
+			String sqlQuery = "SELECT * FROM LIBROS WHERE TITULO LIKE '%" + filtro + "%'";
+			s.execute(sqlQuery);
+			ResultSet rs = s.getResultSet();
+			while (rs.next()) {
+				Libro libro = new Libro(rs.getInt(1), rs.getString(2), rs.getString(3), 
+						rs.getString(4), rs.getDate(5), rs.getString(6), rs.getInt(7));
+				lista.add(libro);
+			}
+		
+		} catch (SQLException ex) {
+			System.out.print(ex.getMessage());
+		}
+		
+		return lista;
 	}
 	
 }
