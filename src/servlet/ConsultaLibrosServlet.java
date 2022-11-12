@@ -51,7 +51,6 @@ public class ConsultaLibrosServlet extends HttpServlet {
 			}
 		}
 		response.sendRedirect("consulta.jsp?lista=" + sb.toString());
-		
 	}
 	
 }
