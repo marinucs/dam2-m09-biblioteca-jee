@@ -16,5 +16,10 @@
 		<%}%>
 		<h1>BIENVENIDO USUARIO <%=usuario %> (llamada <%=method%>)</h1>
 		
+		<form method=GET action=ConsultaLibrosOutlet>
+			Selección de libro: <input type="text" name="titulo"><br><br>
+			<input type="submit" value="Consulta libros" name="submit">
+		</form>
+		
 	</body>
 </html>

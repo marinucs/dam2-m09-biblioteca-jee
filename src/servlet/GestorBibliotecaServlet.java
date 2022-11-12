@@ -1,16 +1,11 @@
 package servlet;
 
-import java.io.PrintWriter;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-/**
- * Servlet implementation class GestorBibliotecaServlet
- */
 
 @SuppressWarnings("serial")
 @WebServlet("/GestorBibliotecaServlet")
@@ -23,7 +18,7 @@ public class GestorBibliotecaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
-		response.setContentType("text/html;charset=UTF8");
+		response.setContentType("text/html;charset=UTF-8");
 
 		if (usuario != null && password != null) {
 			if (usuario.equals("pepe") && password.equals("pepe")) {
@@ -41,7 +36,7 @@ public class GestorBibliotecaServlet extends HttpServlet {
 
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
-		response.setContentType("text/html;charset=UTF8");
+		response.setContentType("text/html;charset=UTF-8");
 
 		if (usuario != null && password != null) {
 			if (usuario.equals("pepe") && password.equals("pepe")) {

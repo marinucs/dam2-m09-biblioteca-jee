@@ -34,10 +34,13 @@ public class GestorBibliotecaServlet extends HttpServlet {
 	 * try (PrintWriter out = response.getWriter()) {
 	 * out.println("<!DOCTYPE html>");
 	 * out.println("<html><head><title>Biblioteca J2EE</title></head>");
-	 * out.println("<body>"); // out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>"); 
+	 * out.println("<body>"); 
+	 * // out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>"); 
 	 * if (method) out.println("<h1>HOLA MUNDO GET</h1>"); 
-	 * else out.println("<h1>HOLA MUNDO POST</h1>"); out.println("</body>");
-	 * out.println("</html>"); }
+	 * else out.println("<h1>HOLA MUNDO POST</h1>"); 
+	 * out.println("</body>");
+	 * out.println("</html>"); 
+	 * }
 	 * 
 	 * }
 	 * 
