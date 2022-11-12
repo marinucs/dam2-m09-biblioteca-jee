@@ -24,23 +24,22 @@ public class GestorBibliotecaServlet extends HttpServlet {
 		
 		String usuario=request.getParameter("usuario");
 		String password=request.getParameter("password");
-		response.setContentType("text/html;charset=UTF8");
-
-		try (PrintWriter out = response.getWriter()) {
-			out.println("<!DOCTYPE html>");
-			out.println("<html><head><title>Biblioteca J2EE</title></head>");
-			out.println("<body>");
-			if(usuario.equals("pepe") && password.equals("pepe")) {
-				if(!yaIniciado) {
-					yaIniciado = true;
-					out.println("<h2>Conectado a la base de datos (GET)</h2>");
-				}
-				out.println("<h1>HOLA MUNDO POST</h1>");
-			} else out.println("<h1> ACCESO NO PERMITIDO USUARIO " + usuario + " </h1>");
-			out.println("</body>");
-			out.println("</html>");
-
-		}
+		
+		if(usuario.equals("pepe") && password.equals("pepe")) {
+			response.setContentType("text/html;charset=UTF8");
+			try (PrintWriter out = response.getWriter()) {
+				out.println("<!DOCTYPE html>");
+				out.println("<html><head><title>Biblioteca J2EE</title></head>");
+				out.println("<body>");
+					if(!yaIniciado) {
+						yaIniciado = true;
+						out.println("<h2>Conectado a la base de datos (GET)</h2>");
+					}
+					out.println("<h1>HOLA MUNDO GET</h1>");
+					out.println("</body>");
+					out.println("</html>");
+			}
+		} else response.sendRedirect("error.html");
 
 	}
 
