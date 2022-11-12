@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,21 +21,15 @@ public class ConsultaLibrosServlet extends HttpServlet {
 		String path = getServletContext().getRealPath("/");
 		File f = new File(path + "libros.txt");
 		BufferedReader entrada = new BufferedReader(new FileReader(f));
-		response.setContentType("text/html;charset=UTF-8");
-
-		try (PrintWriter out = response.getWriter()) {
-			out.println("<!DOCTYPE html>");
-			out.println("<html><head><title>Biblioteca J2EE</title></head>");
-			out.println("<body>");
-			while (entrada.ready()) {
-				String linea = entrada.readLine();
-				boolean presencia = linea.contains(titulo);
-				if (presencia)
-					out.println("<h3>" + linea + "</h3>");
+		StringBuffer sb = new StringBuffer();
+		
+		while(entrada.ready()) {
+			String linea = entrada.readLine();
+			boolean presencia = linea.contains(titulo);
+			if (presencia) {
+				sb.append("<h3>" + linea + "</h3>");
 			}
-			out.println("</body>");
-			out.println("</html>");
 		}
+		response.sendRedirect("consulta.jsp?lista=" + sb.toString());
 	}
-
 }
