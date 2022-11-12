@@ -2,6 +2,7 @@ package servlet;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,7 +47,7 @@ public class BaseDatos {
 	public ArrayList<Libro> consultaLibros(String filtro) {
 		ArrayList<Libro> lista = new ArrayList<Libro>();
 		
-try {
+		try {
 			
 			Statement s = conexion.createStatement();
 			String sqlQuery = "SELECT * FROM LIBROS WHERE TITULO LIKE '%" + filtro + "%'";
@@ -63,6 +64,26 @@ try {
 		}
 		
 		return lista;
+	}
+	
+	public void insertarLibro(Libro libro) {
+		String sqlQuery = "INSERT INTO libros (id, titulo, autor, editorial, fecha, categoria, novedad)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement ps;
+			ps = conexion.prepareStatement(sqlQuery);
+			ps.setInt(1, libro.getId());
+			ps.setString(2, libro.getTitulo());
+			ps.setString(3, libro.getAutor());
+			ps.setString(4, libro.getEditorial());
+			ps.setDate(5, libro.getFecha());
+			ps.setString(6, libro.getCategoria());
+			ps.setInt(7, libro.getNovedad());
+			
+		} catch(SQLException ex) {
+			System.out.print(ex.getMessage());
+		}
 	}
 	
 }

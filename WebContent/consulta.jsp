@@ -26,5 +26,17 @@
 	
 	</table>
 	
+	<form action="GestionLibrosServlet" method="post">
+		<br>
+		ID: <input type="text" name="id">
+		TITULO: <input type="text" name="titulo">
+		AUTOR: <input type="text" name="autor">
+		EDITORIAL: <input type="text" name="editorial"><br><br>
+		FECHA: <input type="text" name="fecha">
+		CATEGORIA: <input type="text" name="categoria">
+		NOVEDAD: <input type="text" name="novedad"><br><br>
+		<input type="submit" name="submit value" value="Insertar libro">
+	</form>
+	
 </body>
 </html>

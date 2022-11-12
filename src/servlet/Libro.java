@@ -13,7 +13,6 @@ public class Libro {
 	private int novedad;
 	
 	public Libro(int id, String titulo, String autor, String editorial, Date fecha, String categoria, int novedad) {
-		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.autor = autor;
