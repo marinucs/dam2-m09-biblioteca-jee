@@ -21,18 +21,22 @@ public class GestorBibliotecaServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		String usuario=request.getParameter("usuario");
+		String password=request.getParameter("password");
 		response.setContentType("text/html;charset=UTF8");
 
 		try (PrintWriter out = response.getWriter()) {
 			out.println("<!DOCTYPE html>");
 			out.println("<html><head><title>Biblioteca J2EE</title></head>");
 			out.println("<body>");
-			if(!yaIniciado) {
-				yaIniciado = true;
-				out.println("<H2>Conectado a la base de datos (GET)</H2>");
-			}
-			out.println("<h1>HOLA MUNDO GET</h1>");
+			if(usuario.equals("pepe") && password.equals("pepe")) {
+				if(!yaIniciado) {
+					yaIniciado = true;
+					out.println("<h2>Conectado a la base de datos (GET)</h2>");
+				}
+				out.println("<h1>HOLA MUNDO POST</h1>");
+			} else out.println("<h1> ACCESO NO PERMITIDO USUARIO " + usuario + " </h1>");
 			out.println("</body>");
 			out.println("</html>");
 
@@ -44,17 +48,21 @@ public class GestorBibliotecaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		String usuario=request.getParameter("usuario");
+		String password=request.getParameter("password");
 		response.setContentType("text/html;charset=UTF8");
 
 		try (PrintWriter out = response.getWriter()) {
 			out.println("<!DOCTYPE html>");
 			out.println("<html><head><title>Biblioteca J2EE</title></head>");
 			out.println("<body>");
-			if(!yaIniciado) {
-				yaIniciado = true;
-				out.println("<H2>Conectado a la base de datos (POST)</H2>");
-			}
-			out.println("<h1>HOLA MUNDO POST</h1>");
+			if(usuario.equals("pepe") && password.equals("pepe")) {
+				if(!yaIniciado) {
+					yaIniciado = true;
+					out.println("<h2>Conectado a la base de datos (POST)</h2>");
+				}
+				out.println("<h1>HOLA MUNDO POST</h1>");
+			} else out.println("<h1> ACCESO NO PERMITIDO USUARIO " + usuario + " </h1>");
 			out.println("</body>");
 			out.println("</html>");
 
