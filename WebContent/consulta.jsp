@@ -7,7 +7,7 @@
 	<title>Consulta de llibres</title>
 </head>
 <body>
-	<% String consulta=request.getParameter("lista"); %>
+	<% String consulta=request.getParameter("lista");%>
 	<%=consulta %>
 </body>
 </html>
