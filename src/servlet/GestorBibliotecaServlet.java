@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class GestorBibliotecaServlet
  */
+
 @SuppressWarnings("serial")
 @WebServlet("/GestorBibliotecaServlet")
 public class GestorBibliotecaServlet extends HttpServlet {
+
+	private boolean yaIniciado = false;
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,6 +28,10 @@ public class GestorBibliotecaServlet extends HttpServlet {
 			out.println("<!DOCTYPE html>");
 			out.println("<html><head><title>Biblioteca J2EE</title></head>");
 			out.println("<body>");
+			if(!yaIniciado) {
+				yaIniciado = true;
+				out.println("<H2>Conectado a la base de datos (GET)</H2>");
+			}
 			out.println("<h1>HOLA MUNDO GET</h1>");
 			out.println("</body>");
 			out.println("</html>");
@@ -43,6 +50,10 @@ public class GestorBibliotecaServlet extends HttpServlet {
 			out.println("<!DOCTYPE html>");
 			out.println("<html><head><title>Biblioteca J2EE</title></head>");
 			out.println("<body>");
+			if(!yaIniciado) {
+				yaIniciado = true;
+				out.println("<H2>Conectado a la base de datos (POST)</H2>");
+			}
 			out.println("<h1>HOLA MUNDO POST</h1>");
 			out.println("</body>");
 			out.println("</html>");
