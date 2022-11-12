@@ -14,7 +14,7 @@
 		<% if (iniciado.equals("false")) {%>
 			<h1>Conectado a la BD</h1>
 		<%}%>
-		<h1>BIENVENIDO USUARIO <%=usuario %> (llamada <%=method%>)</h1>
+		<h1>BIENVENIDO USUARIO <%=usuario %> (llamada <%=method %>)</h1>
 		
 		<form method=GET action=ConsultaLibrosServlet>
 			Selección de libro:

@@ -77,11 +77,22 @@ public class BaseDatos {
 			ps.setString(2, libro.getTitulo());
 			ps.setString(3, libro.getAutor());
 			ps.setString(4, libro.getEditorial());
-			
-			java.sql.Date sqlDate = new java.sql.Date(libro.getFecha().getTime());
-			ps.setDate(5, sqlDate);
+			ps.setDate(5, new java.sql.Date(libro.getFecha().getTime()));
 			ps.setString(6, libro.getCategoria());
 			ps.setInt(7, libro.getNovedad());
+			ps.executeUpdate();
+			
+		} catch(SQLException ex) {
+			System.out.print(ex.getMessage());
+		}
+	}
+	
+	public void eliminarLibro(String id) {
+		String query = "DELETE FROM LIBROS WHERE ID=" + id;
+		
+		try {
+			PreparedStatement ps = conexion.prepareStatement(query);
+		
 			ps.executeUpdate();
 			
 		} catch(SQLException ex) {

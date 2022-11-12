@@ -11,8 +11,10 @@
 	<h1>LIBROS DE LA BIBLIOTECA</h1>
 	<%ArrayList<Libro> libros = (ArrayList<Libro>)request.getAttribute("lista");%>
 	
+	<form action="ConsultaLibrosServlet" method="post">
 	<table border=1>
-	<tr><h2><td>ID<td>TITULO<td>AUTOR<td>EDITORIAL<td>FECHA<td>CATEGORIA<td>NOVEDAD</h2>
+	<tr><h2><td>ID<td>TITULO<td>AUTOR<td>EDITORIAL
+	<td>FECHA<td>CATEGORIA<td>NOVEDAD<td>ELIMINAR<td>MODIFICAR</h2>
 	
 	<%for (Libro libro : libros) {
 		out.print("<tr><h3><td>" + libro.getId() + "</td>");
@@ -22,11 +24,18 @@
 		out.print("<td>" + libro.getFecha() + "</td>");
 		out.print("<td>" + libro.getCategoria() + "</td>");
 		out.print("<td>" + libro.getNovedad() + "</td></h3>");
+		out.print("<td><center><input type=checkBox name=eliminados value=" + libro.getId() + "/></center>");
+		out.print("<td><center><input type=checkBox name=recuperados value=" + libro.getId() + "/></center>");
 	}%>
 	
-	</table>
+	</table><br>
 	
-	<form action="GestionLibrosServlet" method="post">
+	<input type="submit" name="submit" value="Eliminar libros">
+	<input type="submit" name="submit" value="Recuperar libro"><br><br>
+	
+	</form>
+	
+	<form action="ConsultaLibrosServlet" method="POST">
 		<br>
 		ID: <input type="text" name="id">
 		TITULO: <input type="text" name="titulo">
@@ -35,7 +44,7 @@
 		FECHA: <input type="text" name="fecha">
 		CATEGORIA: <input type="text" name="categoria">
 		NOVEDAD: <input type="text" name="novedad"><br><br>
-		<input type="submit" name="submit value" value="Insertar libro">
+		<input type="submit" name="submit" value="Insertar libro">
 	</form>
 	
 </body>
