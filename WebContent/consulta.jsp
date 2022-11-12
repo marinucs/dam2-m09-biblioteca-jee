@@ -4,9 +4,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>ERROR</title>
+	<title>Consulta de llibres</title>
 </head>
 <body>
-	<H1>ACCESO NO PERMITIDO USUARIO <%=request.getParameter("usuario") %></H1>
+	<% String consulta=request.getParameter("lista"); %>
+	<%=consulta %>
 </body>
 </html>
