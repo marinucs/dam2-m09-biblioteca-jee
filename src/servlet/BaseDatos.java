@@ -100,4 +100,45 @@ public class BaseDatos {
 		}
 	}
 	
+	public Libro recuperarLibro(String id) {
+		Libro libro = null;
+		
+		try {
+			
+			Statement s = conexion.createStatement();
+			String sqlQuery = "SELECT * FROM LIBROS WHERE ID=" + id;
+			s.execute(sqlQuery);
+			ResultSet rs = s.getResultSet();
+			rs.next();
+			libro = new Libro(rs.getInt(1), rs.getString(2), rs.getString(3), 
+					rs.getString(4), rs.getDate(5), rs.getString(6), rs.getInt(7));
+			
+		} catch (SQLException ex) {
+			System.out.print(ex.getMessage());
+		}
+		
+		return libro;
+	}
+	
+	public void modificarLibro(Libro libro) {
+		String sqlQuery = "UPDATE LIBROS SET id = ?, titulo = ?, autor = ?, editorial = ? "
+				+ "fecha = ?, categoria = ?, novedad = ? WHERE id = ?" ;
+		
+		try {
+			PreparedStatement ps;
+			ps = conexion.prepareStatement(sqlQuery);
+			ps.setInt(1, libro.getId());
+			ps.setString(2, libro.getTitulo());
+			ps.setString(3, libro.getAutor());
+			ps.setString(4, libro.getEditorial());
+			ps.setDate(5, new java.sql.Date(libro.getFecha().getTime()));
+			ps.setString(6, libro.getCategoria());
+			ps.setInt(7, libro.getNovedad());
+			ps.executeUpdate();
+			
+		} catch(SQLException ex) {
+			System.out.print(ex.getMessage());
+		}
+	}
+	
 }
