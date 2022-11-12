@@ -21,6 +21,7 @@ public class ConsultaLibrosServlet extends HttpServlet {
 		
 		request.setAttribute("lista", libros);
 		getServletContext().getRequestDispatcher("/consulta.jsp").forward(request, response);
+		
 	}
 	
 	@Override

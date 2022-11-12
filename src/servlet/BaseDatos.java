@@ -77,9 +77,12 @@ public class BaseDatos {
 			ps.setString(2, libro.getTitulo());
 			ps.setString(3, libro.getAutor());
 			ps.setString(4, libro.getEditorial());
-			ps.setDate(5, libro.getFecha());
+			
+			java.sql.Date sqlDate = new java.sql.Date(libro.getFecha().getTime());
+			ps.setDate(5, sqlDate);
 			ps.setString(6, libro.getCategoria());
 			ps.setInt(7, libro.getNovedad());
+			ps.executeUpdate();
 			
 		} catch(SQLException ex) {
 			System.out.print(ex.getMessage());
