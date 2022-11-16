@@ -39,7 +39,6 @@
 		if (mod==null) { %>
 		<form action="ConsultaLibrosServlet" method="post">
 			<br>
-			ID: <input type="text" name="id">
 			TITULO: <input type="text" name="titulo">
 			AUTOR: <input type="text" name="autor">
 			EDITORIAL: <input type="text" name="editorial"><br><br>

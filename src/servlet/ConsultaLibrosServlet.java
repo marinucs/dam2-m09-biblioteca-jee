@@ -28,8 +28,7 @@ public class ConsultaLibrosServlet extends HttpServlet {
 			filtro = request.getParameter("titulo");
 			
 		} else if (boton.equals("Insertar libro")) {
-			
-			int id = Integer.parseInt(request.getParameter("id"));
+
 			String titulo = request.getParameter("titulo");
 			String autor = request.getParameter("autor");
 			String editorial = request.getParameter("editorial");
@@ -41,7 +40,7 @@ public class ConsultaLibrosServlet extends HttpServlet {
 			String categoria = request.getParameter("categoria");
 			int novedad = Integer.parseInt(request.getParameter("novedad"));
 			
-			Libro libro = new Libro(id, titulo, autor, editorial, fecha, categoria, novedad);
+			Libro libro = new Libro(titulo, autor, editorial, fecha, categoria, novedad);
 			db.insertarLibro(libro);
 			
 		} else if (boton.equals("Eliminar libros")) {
@@ -110,7 +109,7 @@ public class ConsultaLibrosServlet extends HttpServlet {
 			
 		} else if (boton.equals("Insertar libro")) {
 			
-			int id = Integer.parseInt(request.getParameter("id"));
+			//int id = Integer.parseInt(request.getParameter("id"));
 			String titulo = request.getParameter("titulo");
 			String autor = request.getParameter("autor");
 			String editorial = request.getParameter("editorial");
@@ -128,7 +127,7 @@ public class ConsultaLibrosServlet extends HttpServlet {
 			String categoria = request.getParameter("categoria");
 			int novedad = Integer.parseInt(request.getParameter("novedad"));
 			
-			Libro libro = new Libro(id, titulo, autor, editorial, fecha, categoria, novedad);
+			Libro libro = new Libro(titulo, autor, editorial, fecha, categoria, novedad);
 			db.insertarLibro(libro);
 			
 		} else if (boton.equals("Eliminar libros")) {

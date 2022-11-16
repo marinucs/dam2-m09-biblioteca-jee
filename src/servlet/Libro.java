@@ -12,6 +12,16 @@ public class Libro {
 	private String categoria;
 	private int novedad;
 	
+	public Libro(String titulo, String autor, String editorial, Date fecha, String categoria, int novedad) {
+		this.id = 0;
+		this.titulo = titulo;
+		this.autor = autor;
+		this.editorial = editorial;
+		this.fecha = fecha;
+		this.categoria = categoria;
+		this.novedad = novedad;
+	}
+	
 	public Libro(int id, String titulo, String autor, String editorial, Date fecha, String categoria, int novedad) {
 		this.id = id;
 		this.titulo = titulo;

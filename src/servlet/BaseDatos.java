@@ -67,19 +67,18 @@ public class BaseDatos {
 	}
 	
 	public void insertarLibro(Libro libro) {
-		String sqlQuery = "INSERT INTO libros (id, titulo, autor, editorial, fecha, categoria, novedad)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sqlQuery = "INSERT INTO libros (titulo, autor, editorial, fecha, categoria, novedad)"
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement ps;
 			ps = conexion.prepareStatement(sqlQuery);
-			ps.setInt(1, libro.getId());
-			ps.setString(2, libro.getTitulo());
-			ps.setString(3, libro.getAutor());
-			ps.setString(4, libro.getEditorial());
-			ps.setDate(5, new java.sql.Date(libro.getFecha().getTime()));
-			ps.setString(6, libro.getCategoria());
-			ps.setInt(7, libro.getNovedad());
+			ps.setString(1, libro.getTitulo());
+			ps.setString(2, libro.getAutor());
+			ps.setString(3, libro.getEditorial());
+			ps.setDate(4, new java.sql.Date(libro.getFecha().getTime()));
+			ps.setString(5, libro.getCategoria());
+			ps.setInt(6, libro.getNovedad());
 			ps.executeUpdate();
 			
 		} catch(SQLException ex) {
