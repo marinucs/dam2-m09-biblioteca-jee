@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.mysql.cj.log.Log;
 
@@ -71,7 +73,7 @@ public class BaseDatos {
 	public void insertarLibro(Libro libro) {
 		
 		String query = "SELECT MAX(id) FROM libros";
-		
+		Logger log = Logger.getLogger("servlet.BaseDatos");
 		int last_id = 0;
 		int generatedKeys = 0;
 		
@@ -84,8 +86,10 @@ public class BaseDatos {
 			rs = stmt.getGeneratedKeys();
 			if (rs.next()) {
 				generatedKeys = rs.getInt(1);
-				System.out.println("GENERATED KEYS: " + generatedKeys 
-					+ "\t \n LAST_ID: " + last_id);
+				log.log(Level.INFO, "GENERATED KEYS: " + generatedKeys + "LAST_ID: " + last_id);
+				
+				/* System.out.println("GENERATED KEYS: " + generatedKeys + "\t \n LAST_ID: " +
+				 * last_id); */
 			}
 			
 			if (generatedKeys > last_id) {
