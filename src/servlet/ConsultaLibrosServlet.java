@@ -157,7 +157,6 @@ public class ConsultaLibrosServlet extends HttpServlet {
 			try {
 				parseDate = format.parse(request.getParameter("fecha"));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			java.sql.Date fecha = new java.sql.Date(parseDate.getTime());

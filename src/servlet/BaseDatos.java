@@ -106,7 +106,7 @@ public class BaseDatos {
 		try {
 			
 			Statement s = conexion.createStatement();
-			String sqlQuery = "SELECT * FROM libros WHERE ID=" + id;
+			String sqlQuery = "SELECT * FROM libros WHERE id=" + id;
 			s.execute(sqlQuery);
 			ResultSet rs = s.getResultSet();
 			rs.next();
@@ -121,8 +121,9 @@ public class BaseDatos {
 	}
 	
 	public void modificarLibro(Libro libro) {
-		String sqlQuery = "UPDATE libros SET id = ?, titulo = ?, autor = ?, editorial = ? "
-				+ "fecha = ?, categoria = ?, novedad = ? WHERE id = ?";
+		String sqlQuery = 
+				"UPDATE libros SET id = ?, titulo = ?, autor = ?, editorial = ?," +
+				" fecha = ?, categoria = ?, novedad = ? WHERE id = ?";
 		
 		try {
 			PreparedStatement ps;
