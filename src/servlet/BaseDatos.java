@@ -30,7 +30,7 @@ public class BaseDatos {
 		try {
 			
 			Statement s = conexion.createStatement();
-			String sqlQuery = "SELECT count(*) FROM USUARIOS WHERE usuario ='" + usuario + "' "
+			String sqlQuery = "SELECT count(*) FROM usuarios WHERE usuario ='" + usuario + "' "
 					+ "AND password='" + password + "'";
 			s.execute(sqlQuery);
 			ResultSet rs = s.getResultSet();
@@ -50,7 +50,7 @@ public class BaseDatos {
 		try {
 			
 			Statement s = conexion.createStatement();
-			String sqlQuery = "SELECT * FROM LIBROS WHERE TITULO LIKE '%" + filtro + "%'";
+			String sqlQuery = "SELECT * FROM libros WHERE TITULO LIKE '%" + filtro + "%'";
 			s.execute(sqlQuery);
 			ResultSet rs = s.getResultSet();
 			while (rs.next()) {
@@ -88,7 +88,7 @@ public class BaseDatos {
 	}
 	
 	public void eliminarLibro(String id) {
-		String query = "DELETE FROM LIBROS WHERE ID=" + id;
+		String query = "DELETE FROM libros WHERE id=" + id;
 		
 		try {
 			PreparedStatement ps = conexion.prepareStatement(query);
@@ -106,7 +106,7 @@ public class BaseDatos {
 		try {
 			
 			Statement s = conexion.createStatement();
-			String sqlQuery = "SELECT * FROM LIBROS WHERE ID=" + id;
+			String sqlQuery = "SELECT * FROM libros WHERE ID=" + id;
 			s.execute(sqlQuery);
 			ResultSet rs = s.getResultSet();
 			rs.next();
@@ -121,8 +121,8 @@ public class BaseDatos {
 	}
 	
 	public void modificarLibro(Libro libro) {
-		String sqlQuery = "UPDATE LIBROS SET id = ?, titulo = ?, autor = ?, editorial = ? "
-				+ "fecha = ?, categoria = ?, novedad = ? WHERE id = ?" ;
+		String sqlQuery = "UPDATE libros SET id = ?, titulo = ?, autor = ?, editorial = ? "
+				+ "fecha = ?, categoria = ?, novedad = ? WHERE id = ?";
 		
 		try {
 			PreparedStatement ps;

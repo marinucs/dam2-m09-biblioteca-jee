@@ -49,6 +49,5 @@ public class Libro {
 	public int getNovedad() {
 		return novedad;
 	}
-
 	
 }

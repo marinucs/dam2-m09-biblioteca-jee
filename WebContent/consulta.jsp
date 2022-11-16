@@ -11,7 +11,7 @@
 	<h1>LIBROS DE LA BIBLIOTECA</h1>
 	<%ArrayList<Libro> libros = (ArrayList<Libro>)request.getAttribute("lista");%>
 	
-	<form action="ConsultaLibrosServlet" method="POST">
+	<form action="ConsultaLibrosServlet" method="post">
 	<table border=1>
 	<tr><h2><td>ID<td>TITULO<td>AUTOR<td>EDITORIAL
 	<td>FECHA<td>CATEGORIA<td>NOVEDAD<td>ELIMINAR<td>MODIFICAR</h2>
@@ -37,7 +37,7 @@
 	
 	<% Object mod = request.getAttribute("FlagModificar");
 		if (mod==null) { %>
-		<form action="ConsultaLibrosServlet" method="POST">
+		<form action="ConsultaLibrosServlet" method="post">
 			<br>
 			ID: <input type="text" name="id">
 			TITULO: <input type="text" name="titulo">
@@ -51,7 +51,7 @@
 	
 	<%} else {
 		Libro libro = (Libro)request.getAttribute("libro");%>
-		<form action="ConsultaLibrosServlet" method="POST">
+		<form action="ConsultaLibrosServlet" method="post">
 			ID: <input type="text" name="id" value="<%=libro.getId()%>" readonly>
 			TITULO: <input type="text" name="titulo" value="<%=libro.getTitulo()%>">
 			AUTOR: <input type="text" name="autor" value="<%=libro.getAutor()%>">
@@ -63,5 +63,5 @@
 			<input type="submit" name="submit" value="Cancelar">
 		</form>
 	<%}%>
-</body>
+	</body>
 </html>
