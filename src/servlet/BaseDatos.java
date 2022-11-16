@@ -123,7 +123,7 @@ public class BaseDatos {
 	public void modificarLibro(Libro libro) {
 		String sqlQuery = 
 				"UPDATE libros SET id=?, titulo=?, autor=?, editorial=?," +
-				" fecha=?, categoria=?, novedad=? WHERE id=?";
+				" fecha=?, categoria=?, novedad=? WHERE id=" + libro.getId();
 		
 		try {
 			PreparedStatement ps;
