@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.mysql.cj.log.Log;
+
 public class BaseDatos {
 	
 	private Connection conexion;
@@ -67,6 +69,42 @@ public class BaseDatos {
 	}
 	
 	public void insertarLibro(Libro libro) {
+		
+		String query = "SELECT MAX(id) FROM libros";
+		
+		int last_id = 0;
+		int generatedKeys = 0;
+		
+		try {
+			Statement stmt = conexion.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(query);
+			last_id = rs.getInt(1);
+								
+			rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				generatedKeys = rs.getInt(1);
+				System.out.println("GENERATED KEYS: " + generatedKeys 
+					+ "\t \n LAST_ID: " + last_id);
+			}
+			
+			if (generatedKeys > last_id) {
+				query = "ALTER TABLE libros AUTO_INCREMENT = " + last_id;
+				
+				try {
+					stmt = conexion.prepareStatement(query);
+				
+					stmt.executeUpdate(query);
+					
+				} catch(SQLException ex) {
+					System.out.print(ex.getMessage());
+				}
+			}
+			
+		} catch(SQLException ex) {
+			System.out.print(ex.getMessage());
+		}
+		
 		String sqlQuery = "INSERT INTO libros (titulo, autor, editorial, fecha, categoria, novedad)"
 				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		
@@ -97,6 +135,7 @@ public class BaseDatos {
 		} catch(SQLException ex) {
 			System.out.print(ex.getMessage());
 		}
+		
 	}
 	
 	public Libro recuperarLibro(String id) {
