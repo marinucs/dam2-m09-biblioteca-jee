@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -119,7 +118,6 @@ public class ConsultaLibrosServlet extends HttpServlet {
 			try {
 				parseDate = format.parse(request.getParameter("fecha"));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			java.sql.Date fecha = new java.sql.Date(parseDate.getTime());
