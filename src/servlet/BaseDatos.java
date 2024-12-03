@@ -13,6 +13,7 @@ public class BaseDatos {
 	private Connection conexion;
 	
 	public BaseDatos() {
+		
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -67,19 +68,60 @@ public class BaseDatos {
 	}
 	
 	public void insertarLibro(Libro libro) {
-		String sqlQuery = "INSERT INTO libros (id, titulo, autor, editorial, fecha, categoria, novedad)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+		
+		String query = "SELECT MAX(id) FROM libros";
+		int last_id = 0;
+		int generatedKeys = 0;
+		
+		System.out.println("GENERATED KEYS: " + generatedKeys + "\t \n LAST_ID: " +
+		last_id);
+
+		try {
+			Statement stmt = conexion.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(query);
+			last_id = rs.getInt(1);
+			
+			// PreparedStatement ps = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			
+
+			System.out.println("GENERATED KEYS: " + generatedKeys + "LAST_ID: " + last_id);
+
+								
+			rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				generatedKeys = rs.getInt(1);
+			}
+			
+			if (generatedKeys > last_id) {
+				query = "ALTER TABLE libros AUTO_INCREMENT = " + last_id;
+				
+				try {
+					stmt = conexion.prepareStatement(query);
+				
+					stmt.executeUpdate(query);
+					
+				} catch(SQLException ex) {
+					System.out.print(ex.getMessage());
+				}
+			}
+			
+		} catch(SQLException ex) {
+			System.out.print(ex.getMessage());
+		}
+		
+		String sqlQuery = "INSERT INTO libros (titulo, autor, editorial, fecha, categoria, novedad)"
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement ps;
 			ps = conexion.prepareStatement(sqlQuery);
-			ps.setInt(1, libro.getId());
-			ps.setString(2, libro.getTitulo());
-			ps.setString(3, libro.getAutor());
-			ps.setString(4, libro.getEditorial());
-			ps.setDate(5, new java.sql.Date(libro.getFecha().getTime()));
-			ps.setString(6, libro.getCategoria());
-			ps.setInt(7, libro.getNovedad());
+			ps.setString(1, libro.getTitulo());
+			ps.setString(2, libro.getAutor());
+			ps.setString(3, libro.getEditorial());
+			ps.setDate(4, new java.sql.Date(libro.getFecha().getTime()));
+			ps.setString(5, libro.getCategoria());
+			ps.setInt(6, libro.getNovedad());
 			ps.executeUpdate();
 			
 		} catch(SQLException ex) {
@@ -98,6 +140,7 @@ public class BaseDatos {
 		} catch(SQLException ex) {
 			System.out.print(ex.getMessage());
 		}
+		
 	}
 	
 	public Libro recuperarLibro(String id) {
